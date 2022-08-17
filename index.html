@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Static Template</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        font-family: "Poppins", sans-serif;
+      }
+      .error {
+        background-color: red;
+        color: white;
+        margin: 0;
+        width: 60%;
+        text-align: center;
+      }
+      .success {
+        background-color: green;
+        color: white;
+        margin: 0;
+        width: 60%;
+        text-align: center;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 2px;
+        width: 60%;
+        gap: 10px;
+      }
+
+      hr {
+        border: 1px solid grey;
+        width: 50%;
+      }
+
+      .input {
+        width: 80%;
+        padding: 10px;
+        /* border: none; */
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: left;
+        width: 80%;
+        gap: 15px;
+      }
+
+      .Submit {
+        background-color: rgb(4, 201, 4);
+        border: none;
+        padding: 10px;
+        width: 80%;
+      }
+
+      @media (max-width: 1024px) {
+        form {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          margin: 2px;
+          width: 100%;
+          gap: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Student Registeration form</h1>
+    <!-- <hr /> -->
+    <div class="container">
+      <form id="form">
+        <input
+          required
+          class="input"
+          type="text"
+          placeholder="First Name"
+          id="firstname"
+          min="3"
+          max="20"
+        />
+        <p id="firstname-error" class="error"></p>
+        <input
+          required
+          class="input"
+          type="text"
+          placeholder="Middle Name"
+          id="middlename"
+          min="3"
+          max="20"
+        />
+        <p id="middlename-error" class="error"></p>
+        <input
+          required
+          class="input"
+          type="text"
+          placeholder="Last Name"
+          id="lastname"
+          min="3"
+          max="20"
+        />
+        <p id="lastname-error" class="error"></p>
+        <select name="" id="" required>
+          <option value="">Select Course</option>
+          <option value="">Course 2</option>
+        </select>
+        <div>
+          <input required type="radio" name="gender" value="male" id="" /> Male
+          <input type="radio" name="gender" value="female" id="" /> Female
+          <input type="radio" name="gender" value="other" id="" /> Other
+        </div>
+        <input
+          required
+          class="input"
+          type="number"
+          name="phone"
+          id="phone"
+          placeholder="phone"
+        />
+        <p id="phone-error" class="error"></p>
+        <textarea
+          required
+          name="currentaddress"
+          id="currentaddress"
+          cols="30"
+          rows="10"
+          minlength="10"
+          maxlength="200"
+          placeholder="Current Address"
+          class="input"
+        ></textarea>
+        <input
+          required
+          class="input"
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Enter Email"
+        />
+        <input
+          required
+          class="input"
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+        />
+        <p class="error" id="password-error"></p>
+        <input
+          required
+          class="input"
+          type="password"
+          name="retypepassword"
+          id="retypepassword"
+          placeholder="Retype Password"
+        />
+        <p class="error" id="passwordsame-error"></p>
+
+        <input type="submit" value="Submit" class="Submit" />
+        <p class="success" id="registration-success"></p>
+      </form>
+    </div>
+  </body>
+  <script src="index.js"></script>
+</html>

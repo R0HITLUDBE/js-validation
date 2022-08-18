@@ -20,37 +20,31 @@ function validationFunc(count) {
   var middlename = document.getElementById("middlename").value;
   var lastname = document.getElementById("lastname").value;
   var phone = document.getElementById("phone").value;
-  var email = document.getElementById("email").value;
-  var currentaddress = document.getElementById("currentaddress").value;
   var password = document.getElementById("password").value;
   var retypepassword = document.getElementById("retypepassword").value;
-  var text = "";
-  var submitcount = count;
   const phonenumbervalid = /^[6-9]\d{9}$/gi;
   const passwordvalid = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{7,}$/;
   const specialCharacter = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 
-  if (specialCharacter.test(firstname)) {
+  if (specialCharacter.test(firstname) || firstname.length > 20) {
     document.getElementById("firstname-error").innerHTML =
       "Invalid first name.";
-    count++;
+
     // return false;
   } else {
     document.getElementById("firstname-error").innerHTML = "";
   }
-  if (specialCharacter.test(middlename)) {
+  if (specialCharacter.test(middlename) || middlename.length > 20) {
     document.getElementById("middlename-error").innerHTML =
       "Invalid middle name.";
-    count++;
 
     // return false;
   } else {
     document.getElementById("middlename-error").innerHTML = "";
   }
-  if (specialCharacter.test(lastname)) {
+  if (specialCharacter.test(lastname) || lastname.length > 20) {
     document.getElementById("lastname-error").innerHTML = "Invalid last name.";
     // return false;
-    count++;
   } else {
     document.getElementById("lastname-error").innerHTML = "";
   }
@@ -60,7 +54,6 @@ function validationFunc(count) {
     if (!phonenumbervalid.test(phone)) {
       document.getElementById("phone-error").innerHTML = "Invalid phone number";
       // return false;
-      count++;
     } else {
       document.getElementById("phone-error").innerHTML = "";
     }
@@ -71,7 +64,6 @@ function validationFunc(count) {
       document.getElementById("password-error").innerHTML =
         "Enter a valid password (password should contain at least one Capital letter, and one Numeric and should be a minimum 8 character) ";
       // return false;
-      count++;
     } else {
       document.getElementById("password-error").innerHTML = "";
     }
@@ -79,27 +71,26 @@ function validationFunc(count) {
   if (password !== retypepassword) {
     document.getElementById("passwordsame-error").innerHTML =
       "Password do not match";
-    count++;
 
     // return false;
   } else {
     document.getElementById("passwordsame-error").innerHTML = "";
   }
 
-  if (
-    submitcount > 0 &&
-    password != "" &&
-    retypepassword != "" &&
-    firstname != "" &&
-    lastname != "" &&
-    email != "" &&
-    phone != "" &&
-    currentaddress != ""
-  ) {
-    document.getElementById("registration-success").innerHTML =
-      "Registration success";
-    // return true;
+  if (count > 0) {
+    if (
+      document.getElementById("firstname-error").innerHTML != "" &&
+      document.getElementById("middlename-error").innerHTML != "" &&
+      document.getElementById("lastname-error").innerHTML != "" &&
+      document.getElementById("email-error").innerHTML != "" &&
+      document.getElementById("password-error").innerHTML != "" &&
+      document.getElementById("passwordsame-error").innerHTML != "" &&
+      document.getElementById("phone-error").innerHTML != ""
+    ) {
+    } else {
+      alert("Registration success");
+      form.reset();
+    }
   } else {
-    return false;
   }
 }

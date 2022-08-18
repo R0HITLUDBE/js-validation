@@ -22,6 +22,7 @@ function validationFunc(count) {
   var phone = document.getElementById("phone").value;
   var password = document.getElementById("password").value;
   var retypepassword = document.getElementById("retypepassword").value;
+  var address = document.getElementById("currentaddress").value;
   const phonenumbervalid = /^[6-9]\d{9}$/gi;
   const passwordvalid = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{7,}$/;
   const specialCharacter = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
@@ -48,6 +49,11 @@ function validationFunc(count) {
   } else {
     document.getElementById("lastname-error").innerHTML = "";
   }
+
+  if (address.length > 200) {
+    document.getElementById("address-error").innerHTML = "Invalid address.";
+  }
+
   if (phone === "") {
     document.getElementById("phone-error").innerHTML = "";
   } else {

@@ -26,7 +26,8 @@ function validationFunc(count) {
   const phonenumbervalid = /^[6-9]\d{9}$/gi;
   const passwordvalid = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{7,}$/;
   const specialCharacter = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-
+  var submitcount = count;
+  var phonevalid = false;
   if (specialCharacter.test(firstname) || firstname.length > 20) {
     document.getElementById("firstname-error").innerHTML =
       "Invalid first name.";
@@ -62,6 +63,7 @@ function validationFunc(count) {
       // return false;
     } else {
       document.getElementById("phone-error").innerHTML = "";
+      phonevalid = true;
     }
   }
   if (password === "") {
@@ -74,28 +76,36 @@ function validationFunc(count) {
       document.getElementById("password-error").innerHTML = "";
     }
   }
-  if (password !== retypepassword) {
-    document.getElementById("passwordsame-error").innerHTML =
-      "Password do not match";
-
-    // return false;
+  if (retypepassword === "") {
   } else {
-    document.getElementById("passwordsame-error").innerHTML = "";
+    if (password !== retypepassword) {
+      document.getElementById("passwordsame-error").innerHTML =
+        "Password do not match";
+
+      // return false;
+    } else {
+      document.getElementById("passwordsame-error").innerHTML = "";
+    }
   }
 
   if (count > 0) {
     if (
-      document.getElementById("firstname-error").innerHTML != "" &&
-      document.getElementById("middlename-error").innerHTML != "" &&
-      document.getElementById("lastname-error").innerHTML != "" &&
-      document.getElementById("email-error").innerHTML != "" &&
-      document.getElementById("password-error").innerHTML != "" &&
-      document.getElementById("passwordsame-error").innerHTML != "" &&
-      document.getElementById("phone-error").innerHTML != ""
+      password != retypepassword ||
+      specialCharacter.test(firstname) ||
+      firstname.length > 20 ||
+      specialCharacter.test(middlename) ||
+      middlename.length > 20 ||
+      specialCharacter.test(lastname) ||
+      lastname.length > 20 ||
+      !passwordvalid.test(password) ||
+      !phonevalid
     ) {
+      console.log("unsucceeded 😒");
     } else {
       alert("Registration success");
+      getElementById("success").innerHTML = "Registration success";
       form.reset();
+      submitcount = 0;
     }
   } else {
   }
